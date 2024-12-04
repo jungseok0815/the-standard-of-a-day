@@ -1,23 +1,23 @@
 package com.standardADay.project.usr.controller;
 
 import com.standardADay.project.usr.dto.UsrDTO;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/usr")
+@Slf4j
+@CrossOrigin(origins = "http://localhost:3000") // React 개발 서버 주소
 public class UsrController {
 
     @PostMapping("/insert")
     public void insert(@ModelAttribute UsrDTO usrDTO){
-        System.out.println("userid : " + usrDTO.getUsrId());
+        log.info("usrId : " + usrDTO.getUsrId());
+        log.info("usrPwd : " + usrDTO.getUsrPwd());
     }
 
     @PostMapping("/update")
     public void update(){
-
     }
 
     @PostMapping("/delete")
@@ -26,8 +26,8 @@ public class UsrController {
     }
 
     @PostMapping("/select")
-    public void select(){
-
+    public UsrDTO select(@ModelAttribute UsrDTO usrDTO){
+        log.info(usrDTO.getUsrEmail());
+        return usrDTO;
     }
-
 }
